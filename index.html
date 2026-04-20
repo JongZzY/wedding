@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แผนงานแต่งงาน · 30 ม.ค. 2570</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --rose:#e8c4c4;--rose-dark:#c9908f;--rose-deep:#a86060;
+  --blush:#f5e6e8;--blush2:#fbf0f2;
+  --gold:#d4b896;--gold-deep:#a07840;
+  --lavender:#ddd0ea;--lav-light:#f0eaf6;
+  --sage:#c8d8c8;--sage-light:#e8f0e8;
+  --cream:#faf6f0;--text-main:#5a3a3a;--text-mid:#8a6060;--text-soft:#c09898;--border:#e8d0d0;
+}
+html,body{height:100%;font-family:'Jost',sans-serif;background:var(--cream);color:var(--text-main);}
+.app{max-width:960px;margin:0 auto;padding-bottom:4rem;}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(160deg,#fdf0f5 0%,#f5eaf5 40%,#eaf0f0 100%);border-bottom:1px solid var(--border);padding:2rem 2rem 1.4rem;position:relative;overflow:hidden;text-align:center;}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(232,196,196,0.45) 0%,transparent 70%);border-radius:50%;}
+.hero::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(200,216,200,0.35) 0%,transparent 70%);border-radius:50%;}
+.hero-inner{position:relative;z-index:1;}
+.ornament{font-size:11px;letter-spacing:6px;color:var(--text-soft);text-transform:uppercase;margin-bottom:4px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;line-height:1.2;margin-bottom:4px;}
+.hero h1 em{font-style:italic;color:var(--rose-deep);}
+.date-tag{display:inline-flex;align-items:center;gap:8px;margin:8px 0 14px;background:rgba(255,255,255,0.75);border:1px solid var(--rose);border-radius:30px;padding:5px 18px;font-size:12px;color:var(--rose-deep);letter-spacing:1px;}
+.countdown{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.count-box{background:rgba(255,255,255,0.85);border:1px solid var(--border);border-radius:10px;padding:8px 14px;text-align:center;min-width:58px;}
+.count-num{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--rose-deep);line-height:1;}
+.count-lbl{font-size:9px;letter-spacing:2px;color:var(--text-soft);text-transform:uppercase;margin-top:2px;}
+
+/* ── TABS ── */
+.tab-nav{display:flex;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.55);padding:0 1.5rem;overflow-x:auto;}
+.tab-btn{font-family:'Jost',sans-serif;font-size:13px;color:var(--text-soft);background:none;border:none;border-bottom:2px solid transparent;padding:10px 16px;cursor:pointer;transition:all .15s;white-space:nowrap;letter-spacing:.3px;}
+.tab-btn.on{color:var(--rose-deep);border-bottom-color:var(--rose-dark);}
+.tab-content{display:none;}.tab-content.on{display:block;}
+
+/* ── SHARED UTIL ── */
+.section-pad{padding:1.2rem 1.5rem;}
+.card{background:rgba(255,255,255,0.75);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:1.2rem;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--text-mid);margin-bottom:10px;}
+.btn-primary{background:linear-gradient(135deg,var(--rose-dark),#b87070);color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-family:'Jost',sans-serif;cursor:pointer;transition:opacity .15s;}
+.btn-primary:hover{opacity:.85;}
+.btn-sec{background:none;border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;font-family:'Jost',sans-serif;color:var(--text-soft);cursor:pointer;}
+.badge{font-size:10.5px;padding:2px 9px;border-radius:12px;}
+.b-high{background:rgba(240,153,123,0.2);color:#8a4020;}
+.b-med{background:rgba(212,184,150,0.25);color:#7a5820;}
+.b-low{background:rgba(200,216,200,0.35);color:#3a6040;}
+.empty-msg{text-align:center;padding:1.5rem;font-size:13px;color:var(--text-soft);font-style:italic;}
+
+/* ── DASHBOARD ── */
+.overall-ring-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.big-ring{position:relative;width:90px;height:90px;flex-shrink:0;}
+.big-ring svg{transform:rotate(-90deg);}
+.ring-bg{fill:none;stroke:var(--blush);stroke-width:8;}
+.ring-fg{fill:none;stroke:url(#rg);stroke-width:8;stroke-linecap:round;transition:stroke-dasharray .6s ease;}
+.ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring-pct{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--rose-deep);}
+.ring-sub{font-size:9px;color:var(--text-soft);letter-spacing:1px;}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.2rem;}
+.stat-pill{background:var(--blush2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;text-align:center;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--rose-deep);}
+.stat-lbl{font-size:10px;color:var(--text-soft);letter-spacing:.5px;}
+.urg-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.2rem;}
+.urg-card{border-radius:12px;padding:12px 14px;border:1px solid;}
+.urg-card.high{background:rgba(240,153,123,0.12);border-color:rgba(240,153,123,0.4);}
+.urg-card.med{background:rgba(212,184,150,0.15);border-color:rgba(212,184,150,0.5);}
+.urg-card.low{background:rgba(200,216,200,0.2);border-color:rgba(200,216,200,0.6);}
+.urg-num{font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1;}
+.urg-card.high .urg-num{color:#8a4020;}.urg-card.med .urg-num{color:#7a5820;}.urg-card.low .urg-num{color:#3a6040;}
+.urg-lbl{font-size:11px;margin-top:2px;}
+.urg-card.high .urg-lbl{color:#a85030;}.urg-card.med .urg-lbl{color:#8a6820;}.urg-card.low .urg-lbl{color:#4a7050;}
+.cb-item{background:rgba(255,255,255,0.7);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:7px;}
+.cb-top{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.cb-ico{font-size:14px;}.cb-name{font-size:13px;flex:1;}
+.cb-pct{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--rose-deep);min-width:38px;text-align:right;}
+.cb-track{height:5px;background:var(--blush);border-radius:5px;overflow:hidden;}
+.cb-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--rose-dark),var(--lavender));transition:width .5s ease;}
+.cb-count{font-size:10px;color:var(--text-soft);margin-top:3px;}
+.up-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.7);border:1px solid var(--border);border-radius:9px;padding:9px 13px;margin-bottom:6px;}
+.up-ico{font-size:13px;}.up-name{font-size:12.5px;flex:1;}
+.up-dl{font-size:11px;padding:2px 8px;border-radius:10px;}
+.up-dl.soon{background:#fdeae8;color:#8a3030;border:1px solid #e8b0a8;}
+.up-dl.ok{background:var(--blush2);color:var(--text-soft);border:1px solid var(--border);}
+
+/* ── TASKS ── */
+.prog-track{height:5px;background:var(--blush);border-radius:5px;overflow:hidden;margin-top:6px;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--rose-dark),var(--lavender));border-radius:5px;transition:width .5s;}
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0;}
+.fpill{padding:4px 14px;border-radius:20px;border:1px solid var(--border);background:rgba(255,255,255,0.6);font-size:11.5px;font-family:'Jost',sans-serif;color:var(--text-mid);cursor:pointer;transition:all .15s;}
+.fpill.on{background:var(--rose-dark);border-color:var(--rose-dark);color:#fff;}
+.search-wrap{position:relative;}
+.s-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--text-soft);}
+.search-in{width:100%;padding:8px 12px 8px 34px;border:1px solid var(--border);border-radius:30px;background:rgba(255,255,255,0.8);color:var(--text-main);font-size:13px;font-family:'Jost',sans-serif;outline:none;margin-bottom:8px;}
+.search-in:focus{border-color:var(--rose-dark);}
+.cat-block{margin-bottom:.8rem;}
+.cat-head{display:flex;align-items:center;gap:8px;padding:9px 14px;background:linear-gradient(135deg,rgba(255,255,255,0.85),rgba(245,230,232,0.6));border:1px solid var(--border);border-radius:11px;cursor:pointer;margin-bottom:5px;transition:box-shadow .2s;}
+.cat-head:hover{box-shadow:0 2px 10px rgba(180,120,120,0.1);}
+.cat-ico{font-size:14px;}.cat-name-t{font-family:'Cormorant Garamond',serif;font-size:15px;flex:1;}.cat-stat{font-size:10px;color:var(--text-soft);}.cat-arr{font-size:10px;color:var(--text-soft);}
+.task-list{padding-left:2px;}
+.tcard{display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,0.75);border:1px solid rgba(232,208,208,0.6);border-radius:9px;padding:10px 12px;margin-bottom:5px;transition:all .15s;}
+.tcard:hover{background:rgba(255,255,255,0.95);box-shadow:0 2px 8px rgba(180,120,120,0.07);}
+.tcard.done{opacity:.5;}.tcard.done .tname{text-decoration:line-through;}
+.check-ring{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--rose);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;}
+.check-ring.on{background:linear-gradient(135deg,var(--rose-dark),var(--lavender));border-color:transparent;}
+.check-svg{display:none;}.check-ring.on .check-svg{display:block;}
+.tinfo{flex:1;min-width:0;}
+.tname{font-size:13px;color:var(--text-main);line-height:1.4;}
+.tnote{font-size:11px;color:var(--text-soft);margin-top:2px;font-style:italic;}
+.tmeta{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-top:4px;}
+.dl-chip{font-size:10px;padding:2px 7px;border-radius:10px;border:1px solid var(--border);color:var(--text-soft);}
+.dl-chip.late{background:#fdeae8;border-color:#e8b0a8;color:#8a3030;}
+.tbtns{display:flex;gap:2px;flex-shrink:0;}
+.tbtn{background:none;border:none;cursor:pointer;font-size:12px;color:var(--text-soft);padding:3px 4px;border-radius:5px;transition:color .15s;}
+.tbtn:hover{color:var(--rose-deep);}.tbtn.x:hover{color:#c04040;}
+.add-trigger{width:100%;padding:7px;border:1px dashed var(--border);border-radius:8px;background:transparent;color:var(--text-soft);font-size:11.5px;font-family:'Jost',sans-serif;cursor:pointer;transition:all .15s;letter-spacing:.5px;}
+.add-trigger:hover{border-color:var(--rose-dark);color:var(--rose-deep);}
+.add-form{background:var(--blush2);border:1px solid var(--border);border-radius:9px;padding:10px 12px;margin-top:3px;}
+.af-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:7px;}
+.af-in,.af-sel{padding:6px 10px;border:1px solid var(--border);border-radius:7px;background:rgba(255,255,255,0.9);color:var(--text-main);font-size:12px;font-family:'Jost',sans-serif;outline:none;}
+.af-in{flex:1;min-width:110px;}.af-in:focus{border-color:var(--rose-dark);}
+.af-btns{display:flex;gap:7px;}
+
+/* ── GUEST LIST ── */
+.guest-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:1rem;}
+.guest-toolbar .search-in{margin:0;flex:1;min-width:160px;}
+.g-filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;}
+.guest-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.2rem;}
+.g-stat{background:rgba(255,255,255,0.75);border:1px solid var(--border);border-radius:10px;padding:10px 12px;text-align:center;}
+.g-stat-num{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--rose-deep);}
+.g-stat-lbl{font-size:10px;color:var(--text-soft);letter-spacing:.5px;}
+.guest-table{width:100%;border-collapse:collapse;}
+.guest-table th{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-soft);font-weight:400;text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);}
+.guest-table td{font-size:13px;padding:9px 10px;border-bottom:1px solid rgba(232,208,208,0.35);vertical-align:middle;}
+.guest-table tr:hover td{background:rgba(255,255,255,0.5);}
+.g-status{font-size:11px;padding:2px 9px;border-radius:12px;white-space:nowrap;}
+.gs-confirmed{background:rgba(200,216,200,0.4);color:#3a6040;}
+.gs-pending{background:rgba(212,184,150,0.25);color:#7a5820;}
+.gs-declined{background:rgba(240,153,123,0.2);color:#8a4020;}
+.g-side{font-size:11px;padding:2px 8px;border-radius:10px;}
+.gs-bride{background:var(--lav-light);color:#6a4a90;}
+.gs-groom{background:var(--blush);color:var(--rose-deep);}
+.gs-both{background:var(--sage-light);color:#3a6040;}
+.add-guest-form{background:var(--blush2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:1rem;}
+.afg-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--text-mid);margin-bottom:10px;}
+.afg-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.afg-full{grid-column:1/-1;}
+.afg-in,.afg-sel,.afg-ta{width:100%;padding:8px 11px;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,0.9);color:var(--text-main);font-size:13px;font-family:'Jost',sans-serif;outline:none;}
+.afg-in:focus,.afg-sel:focus{border-color:var(--rose-dark);}
+.afg-ta{resize:vertical;min-height:56px;}
+.afg-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-soft);margin-bottom:4px;display:block;}
+
+/* ── MODAL ── */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(90,58,58,0.28);backdrop-filter:blur(4px);z-index:300;align-items:center;justify-content:center;padding:1rem;}
+.modal-bg.open{display:flex;}
+.modal{background:linear-gradient(160deg,#fff9fb,#faf0f8);border:1px solid var(--border);border-radius:18px;padding:1.6rem;width:100%;max-width:480px;box-shadow:0 8px 40px rgba(180,120,120,0.18);max-height:90vh;overflow-y:auto;}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--text-main);margin-bottom:1.1rem;text-align:center;}
+.mf-field{margin-bottom:10px;}
+.mf-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-soft);margin-bottom:4px;display:block;}
+.mf-in,.mf-sel,.mf-ta{width:100%;padding:8px 11px;border:1px solid var(--border);border-radius:9px;background:rgba(255,255,255,0.85);color:var(--text-main);font-size:13px;font-family:'Jost',sans-serif;outline:none;}
+.mf-in:focus,.mf-sel:focus,.mf-ta:focus{border-color:var(--rose-dark);}
+.mf-ta{resize:vertical;min-height:60px;}
+.mf-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:1rem;}
+
+/* TOAST */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:rgba(90,58,58,0.9);color:#fff;padding:8px 20px;border-radius:20px;font-size:12.5px;opacity:0;transition:opacity .3s;z-index:999;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <p class="ornament">Wedding Planner</p>
+    <h1>แผนงาน<em>แต่งงาน</em></h1>
+    <div class="date-tag">✦ 30 มกราคม 2570 ✦</div>
+    <div class="countdown" id="cd"></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tab-nav">
+  <button class="tab-btn on" onclick="switchTab('dash',this)">📊 ภาพรวม</button>
+  <button class="tab-btn" onclick="switchTab('tasks',this)">✦ รายการงาน</button>
+  <button class="tab-btn" onclick="switchTab('guests',this)">💌 รายชื่อแขก</button>
+</div>
+
+<!-- ══════════ DASHBOARD ══════════ -->
+<div class="tab-content on" id="tab-dash">
+<div class="section-pad">
+
+  <div class="card">
+    <div class="overall-ring-row">
+      <div class="big-ring">
+        <svg width="90" height="90" viewBox="0 0 90 90">
+          <defs>
+            <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#c9908f"/>
+              <stop offset="100%" stop-color="#ddd0ea"/>
+            </linearGradient>
+          </defs>
+          <circle class="ring-bg" cx="45" cy="45" r="36"/>
+          <circle class="ring-fg" id="ring-fg" cx="45" cy="45" r="36" stroke-dasharray="0 226"/>
+        </svg>
+        <div class="ring-label">
+          <span class="ring-pct" id="ring-pct">0%</span>
+          <span class="ring-sub">รวม</span>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div class="stat-grid" id="oc-stats" style="grid-template-columns:repeat(2,1fr);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="urg-row" id="urg-row"></div>
+  <p class="sec-title">ความคืบหน้าแต่ละหมวด</p>
+  <div id="cat-bars"></div>
+  <p class="sec-title" style="margin-top:1.2rem;">งานที่ใกล้ครบกำหนด (60 วัน)</p>
+  <div id="up-list"></div>
+
+  <p class="sec-title" style="margin-top:1.2rem;">สรุปรายชื่อแขก</p>
+  <div class="guest-stats" id="dash-guest-stats"></div>
+
+</div>
+</div>
+
+<!-- ══════════ TASKS ══════════ -->
+<div class="tab-content" id="tab-tasks">
+<div class="section-pad">
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+      <span class="sec-title" style="margin:0;">ความคืบหน้า</span>
+      <span id="pc" style="font-size:11px;color:var(--text-soft);">0 / 0</span>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="pf" style="width:0%"></div></div>
+  </div>
+  <div class="search-wrap">
+    <span class="s-icon">✦</span>
+    <input class="search-in" id="sq" placeholder="ค้นหางาน..." oninput="renderTasks()">
+  </div>
+  <div class="filter-row">
+    <button class="fpill on" onclick="setTF('all',this)">ทั้งหมด</button>
+    <button class="fpill" onclick="setTF('pending',this)">ยังไม่เสร็จ</button>
+    <button class="fpill" onclick="setTF('done',this)">เสร็จแล้ว</button>
+    <button class="fpill" onclick="setTF('high',this)">ด่วนมาก</button>
+  </div>
+  <div id="cats"></div>
+</div>
+</div>
+
+<!-- ══════════ GUESTS ══════════ -->
+<div class="tab-content" id="tab-guests">
+<div class="section-pad">
+
+  <!-- stats -->
+  <div class="guest-stats" id="g-stats"></div>
+
+  <!-- add form -->
+  <div class="add-guest-form" id="guest-add-form">
+    <p class="afg-title">✦ เพิ่มรายชื่อแขก</p>
+    <div class="afg-grid">
+      <div>
+        <label class="afg-label">ชื่อ-นามสกุล *</label>
+        <input class="afg-in" id="gname" placeholder="เช่น สมชาย ใจดี">
+      </div>
+      <div>
+        <label class="afg-label">ความสัมพันธ์</label>
+        <input class="afg-in" id="grelation" placeholder="เช่น เพื่อนเจ้าสาว">
+      </div>
+      <div>
+        <label class="afg-label">ฝ่าย</label>
+        <select class="afg-sel" id="gside">
+          <option value="bride">ฝ่ายเจ้าสาว</option>
+          <option value="groom">ฝ่ายเจ้าบ่าว</option>
+          <option value="both">ทั้งสองฝ่าย</option>
+        </select>
+      </div>
+      <div>
+        <label class="afg-label">สถานะ RSVP</label>
+        <select class="afg-sel" id="gstatus">
+          <option value="pending">รอยืนยัน</option>
+          <option value="confirmed">ยืนยันแล้ว</option>
+          <option value="declined">ไม่มาร่วมงาน</option>
+        </select>
+      </div>
+      <div>
+        <label class="afg-label">โทรศัพท์</label>
+        <input class="afg-in" id="gphone" placeholder="0XX-XXX-XXXX">
+      </div>
+      <div>
+        <label class="afg-label">จำนวน (คน)</label>
+        <input class="afg-in" id="gcount" type="number" min="1" value="1" placeholder="1">
+      </div>
+      <div class="afg-full">
+        <label class="afg-label">โต๊ะ / ที่นั่ง</label>
+        <input class="afg-in" id="gtable" placeholder="เช่น โต๊ะที่ 5">
+      </div>
+      <div class="afg-full">
+        <label class="afg-label">หมายเหตุ</label>
+        <textarea class="afg-ta" id="gnotes" placeholder="อาหารพิเศษ, ที่พัก ฯลฯ"></textarea>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn-primary" onclick="addGuest()">เพิ่มแขก ✦</button>
+      <button class="btn-sec" onclick="clearGuestForm()">ล้างฟอร์ม</button>
+    </div>
+  </div>
+
+  <!-- toolbar -->
+  <div class="guest-toolbar">
+    <div class="search-wrap" style="flex:1;min-width:160px;">
+      <span class="s-icon">✦</span>
+      <input class="search-in" id="gsq" placeholder="ค้นหาแขก..." oninput="renderGuests()" style="margin:0;">
+    </div>
+    <button class="btn-primary" onclick="exportGuestCSV()" style="padding:7px 14px;font-size:12px;">⬇ Export CSV</button>
+  </div>
+  <div class="g-filter-row">
+    <button class="fpill on" onclick="setGF('all',this)">ทั้งหมด</button>
+    <button class="fpill" onclick="setGF('confirmed',this)">ยืนยันแล้ว</button>
+    <button class="fpill" onclick="setGF('pending',this)">รอยืนยัน</button>
+    <button class="fpill" onclick="setGF('declined',this)">ไม่มา</button>
+    <button class="fpill" onclick="setGF('bride',this)">ฝ่ายเจ้าสาว</button>
+    <button class="fpill" onclick="setGF('groom',this)">ฝ่ายเจ้าบ่าว</button>
+  </div>
+
+  <!-- table -->
+  <div style="overflow-x:auto;">
+    <table class="guest-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>ชื่อ-นามสกุล</th>
+          <th>ความสัมพันธ์</th>
+          <th>ฝ่าย</th>
+          <th>RSVP</th>
+          <th>จำนวน</th>
+          <th>โต๊ะ</th>
+          <th>โทร</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="guest-tbody"></tbody>
+    </table>
+  </div>
+  <div id="guest-empty" class="empty-msg" style="display:none;">ยังไม่มีรายชื่อแขก · กรอกฟอร์มด้านบนเพื่อเพิ่ม</div>
+
+</div>
+</div>
+</div><!-- /app -->
+
+<!-- TASK MODAL -->
+<div class="modal-bg" id="task-modal">
+  <div class="modal">
+    <p class="modal-title">แก้ไขรายการงาน</p>
+    <div class="mf-field"><label class="mf-label">ชื่องาน</label><input class="mf-in" id="m-name"></div>
+    <div class="mf-grid">
+      <div class="mf-field">
+        <label class="mf-label">วันครบกำหนด</label>
+        <input class="mf-in" id="m-dl" type="date">
+      </div>
+      <div class="mf-field">
+        <label class="mf-label">ความสำคัญ</label>
+        <select class="mf-sel" id="m-pr">
+          <option value="high">ด่วนมาก</option>
+          <option value="med">ปานกลาง</option>
+          <option value="low">ไม่ด่วน</option>
+        </select>
+      </div>
+    </div>
+    <div class="mf-field">
+      <label class="mf-label">หมวด</label>
+      <select class="mf-sel" id="m-cat"></select>
+    </div>
+    <div class="mf-field"><label class="mf-label">หมายเหตุ</label><textarea class="mf-ta" id="m-notes"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn-sec" onclick="closeModal('task-modal')">ยกเลิก</button>
+      <button class="btn-primary" onclick="saveTaskEdit()">บันทึก ✦</button>
+    </div>
+  </div>
+</div>
+
+<!-- GUEST MODAL -->
+<div class="modal-bg" id="guest-modal">
+  <div class="modal">
+    <p class="modal-title">แก้ไขข้อมูลแขก</p>
+    <div class="mf-field"><label class="mf-label">ชื่อ-นามสกุล</label><input class="mf-in" id="gm-name"></div>
+    <div class="mf-grid">
+      <div class="mf-field">
+        <label class="mf-label">ความสัมพันธ์</label>
+        <input class="mf-in" id="gm-relation">
+      </div>
+      <div class="mf-field">
+        <label class="mf-label">โทรศัพท์</label>
+        <input class="mf-in" id="gm-phone">
+      </div>
+      <div class="mf-field">
+        <label class="mf-label">ฝ่าย</label>
+        <select class="mf-sel" id="gm-side">
+          <option value="bride">ฝ่ายเจ้าสาว</option>
+          <option value="groom">ฝ่ายเจ้าบ่าว</option>
+          <option value="both">ทั้งสองฝ่าย</option>
+        </select>
+      </div>
+      <div class="mf-field">
+        <label class="mf-label">สถานะ RSVP</label>
+        <select class="mf-sel" id="gm-status">
+          <option value="pending">รอยืนยัน</option>
+          <option value="confirmed">ยืนยันแล้ว</option>
+          <option value="declined">ไม่มาร่วมงาน</option>
+        </select>
+      </div>
+      <div class="mf-field">
+        <label class="mf-label">จำนวน (คน)</label>
+        <input class="mf-in" id="gm-count" type="number" min="1">
+      </div>
+      <div class="mf-field">
+        <label class="mf-label">โต๊ะ / ที่นั่ง</label>
+        <input class="mf-in" id="gm-table">
+      </div>
+    </div>
+    <div class="mf-field"><label class="mf-label">หมายเหตุ</label><textarea class="mf-ta" id="gm-notes"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn-sec" onclick="closeModal('guest-modal')">ยกเลิก</button>
+      <button class="btn-primary" onclick="saveGuestEdit()">บันทึก ✦</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════
+   DATA
+═══════════════════════════════ */
+const WEDDING = new Date(2027, 0, 30);
+const CATS = [
+  {id:'venue',label:'สถานที่และงานเลี้ยง',icon:'🏛'},
+  {id:'ceremony',label:'พิธีแต่งงาน',icon:'💍'},
+  {id:'attire',label:'ชุดแต่งงานและแต่งหน้า',icon:'👗'},
+  {id:'photo',label:'ช่างภาพและวิดีโอ',icon:'📷'},
+  {id:'flowers',label:'ดอกไม้และตกแต่ง',icon:'🌸'},
+  {id:'food',label:'อาหารและเครื่องดื่ม',icon:'🍽'},
+  {id:'music',label:'ดนตรีและความบันเทิง',icon:'🎵'},
+  {id:'invite',label:'การ์ดและของชำร่วย',icon:'💌'},
+  {id:'honeymoon',label:'ฮันนีมูน',icon:'✈️'},
+  {id:'admin',label:'เอกสารและกฎหมาย',icon:'📋'},
+  {id:'beauty',label:'สุขภาพและความงาม',icon:'💅'},
+  {id:'misc',label:'อื่น ๆ',icon:'📌'},
+];
+
+const DEFAULT_TASKS = [
+  {id:1,cat:'venue',name:'กำหนดงบประมาณรวม',priority:'high',deadline:'2026-02-28',done:false,notes:'รวมทุกหมวด ทั้งสองฝ่าย'},
+  {id:2,cat:'venue',name:'จัดทำรายชื่อแขกเชิญ',priority:'high',deadline:'2026-02-28',done:false,notes:''},
+  {id:3,cat:'venue',name:'ดูและจองสถานที่จัดงาน',priority:'high',deadline:'2026-03-31',done:false,notes:'โรงแรม/ห้องจัดเลี้ยง/สวน'},
+  {id:4,cat:'venue',name:'ตรวจสอบสัญญาสถานที่',priority:'high',deadline:'2026-04-30',done:false,notes:''},
+  {id:5,cat:'venue',name:'วางแผนผังที่นั่งแขก',priority:'med',deadline:'2026-11-30',done:false,notes:''},
+  {id:6,cat:'venue',name:'ประสานงานกับผู้จัดการสถานที่',priority:'med',deadline:'2027-01-15',done:false,notes:''},
+  {id:7,cat:'ceremony',name:'กำหนดรูปแบบพิธี',priority:'high',deadline:'2026-03-31',done:false,notes:'ศาสนพิธี/สากล'},
+  {id:8,cat:'ceremony',name:'นิมนต์พระ / ติดต่อนักบวช',priority:'high',deadline:'2026-04-30',done:false,notes:''},
+  {id:9,cat:'ceremony',name:'เลือกฤกษ์มงคลและเวลาพิธี',priority:'high',deadline:'2026-04-30',done:false,notes:''},
+  {id:10,cat:'ceremony',name:'เตรียมขันหมาก/สินสอดทองหมั้น',priority:'high',deadline:'2026-10-31',done:false,notes:''},
+  {id:11,cat:'ceremony',name:'ซักซ้อมพิธี (Rehearsal)',priority:'med',deadline:'2027-01-28',done:false,notes:''},
+  {id:12,cat:'attire',name:'เลือกและสั่งตัดชุดเจ้าสาว',priority:'high',deadline:'2026-04-30',done:false,notes:'ควรสั่งล่วงหน้า 9–12 เดือน'},
+  {id:13,cat:'attire',name:'เลือกชุดเจ้าบ่าว',priority:'high',deadline:'2026-06-30',done:false,notes:'สูทหรือชุดไทย'},
+  {id:14,cat:'attire',name:'เลือกชุดเพื่อนเจ้าสาว/บ่าว',priority:'med',deadline:'2026-07-31',done:false,notes:''},
+  {id:15,cat:'attire',name:'ทดลองแต่งหน้าทำผม (trial)',priority:'high',deadline:'2026-10-31',done:false,notes:''},
+  {id:16,cat:'attire',name:'ซื้อรองเท้าและเครื่องประดับ',priority:'med',deadline:'2026-10-31',done:false,notes:''},
+  {id:17,cat:'attire',name:'นัด fitting ชุดรอบสุดท้าย',priority:'high',deadline:'2027-01-10',done:false,notes:''},
+  {id:18,cat:'photo',name:'หาและคัดเลือกช่างภาพ',priority:'high',deadline:'2026-04-30',done:false,notes:'ดูพอร์ตโฟลิโอ ตรวจสอบรีวิว'},
+  {id:19,cat:'photo',name:'จองช่างภาพและช่างวิดีโอ',priority:'high',deadline:'2026-05-31',done:false,notes:''},
+  {id:20,cat:'photo',name:'ถ่ายภาพ Pre-Wedding',priority:'med',deadline:'2026-10-31',done:false,notes:''},
+  {id:21,cat:'photo',name:'ประชุม shot list กับช่างภาพ',priority:'med',deadline:'2027-01-15',done:false,notes:''},
+  {id:22,cat:'flowers',name:'เลือกธีมสีและสไตล์ตกแต่ง',priority:'med',deadline:'2026-05-31',done:false,notes:''},
+  {id:23,cat:'flowers',name:'ติดต่อและจองร้านดอกไม้',priority:'med',deadline:'2026-06-30',done:false,notes:'ช่อเจ้าสาว โต๊ะ ประตูห้อง'},
+  {id:24,cat:'flowers',name:'ออกแบบการจัดตกแต่ง',priority:'med',deadline:'2026-09-30',done:false,notes:''},
+  {id:25,cat:'flowers',name:'ยืนยันออเดอร์ดอกไม้ทั้งหมด',priority:'high',deadline:'2027-01-15',done:false,notes:''},
+  {id:26,cat:'food',name:'ตัดสินใจประเภทงานเลี้ยง',priority:'high',deadline:'2026-05-31',done:false,notes:'บุฟเฟ่ต์หรือเซ็ท'},
+  {id:27,cat:'food',name:'ชิมอาหารกับ Catering',priority:'high',deadline:'2026-07-31',done:false,notes:''},
+  {id:28,cat:'food',name:'เลือกและสั่งเค้กแต่งงาน',priority:'med',deadline:'2026-09-30',done:false,notes:''},
+  {id:29,cat:'food',name:'จัดเตรียมเครื่องดื่มและบาร์',priority:'med',deadline:'2026-10-31',done:false,notes:''},
+  {id:30,cat:'food',name:'ยืนยันจำนวนแขกและเมนูสุดท้าย',priority:'high',deadline:'2027-01-20',done:false,notes:''},
+  {id:31,cat:'music',name:'เลือกวงดนตรีหรือ DJ',priority:'med',deadline:'2026-06-30',done:false,notes:''},
+  {id:32,cat:'music',name:'เลือกเพลงสำคัญในพิธี',priority:'med',deadline:'2026-10-31',done:false,notes:'เพลงเดินเข้า เพลง first dance'},
+  {id:33,cat:'music',name:'ประชุม playlist กับวง/DJ',priority:'low',deadline:'2027-01-15',done:false,notes:''},
+  {id:34,cat:'invite',name:'ออกแบบการ์ดแต่งงาน',priority:'high',deadline:'2026-06-30',done:false,notes:''},
+  {id:35,cat:'invite',name:'พิมพ์และส่งการ์ดเชิญ',priority:'high',deadline:'2026-10-31',done:false,notes:'ส่งล่วงหน้า 2–3 เดือน'},
+  {id:36,cat:'invite',name:'เลือกและสั่งของชำร่วย',priority:'med',deadline:'2026-10-31',done:false,notes:''},
+  {id:37,cat:'invite',name:'สร้างเว็บไซต์/LINE สำหรับงาน',priority:'low',deadline:'2026-08-31',done:false,notes:''},
+  {id:38,cat:'invite',name:'ยืนยันจำนวน RSVP',priority:'high',deadline:'2027-01-10',done:false,notes:''},
+  {id:39,cat:'honeymoon',name:'ตัดสินใจปลายทางฮันนีมูน',priority:'med',deadline:'2026-05-31',done:false,notes:''},
+  {id:40,cat:'honeymoon',name:'จองตั๋วเครื่องบินและโรงแรม',priority:'med',deadline:'2026-07-31',done:false,notes:''},
+  {id:41,cat:'honeymoon',name:'ทำวีซ่า (ถ้าจำเป็น)',priority:'med',deadline:'2026-10-31',done:false,notes:''},
+  {id:42,cat:'admin',name:'ยื่นคำร้องจดทะเบียนสมรส',priority:'high',deadline:'2027-01-30',done:false,notes:''},
+  {id:43,cat:'admin',name:'ตรวจสอบเอกสารทั้งสองฝ่าย',priority:'high',deadline:'2026-12-31',done:false,notes:'บัตรประชาชน ทะเบียนบ้าน'},
+  {id:44,cat:'admin',name:'วางแผนประกันภัยงานแต่งงาน',priority:'low',deadline:'2026-06-30',done:false,notes:''},
+  {id:45,cat:'beauty',name:'วางแผนโปรแกรมดูแลผิว',priority:'med',deadline:'2026-03-31',done:false,notes:''},
+  {id:46,cat:'beauty',name:'จองคิวฟอกสีฟัน',priority:'low',deadline:'2026-06-30',done:false,notes:''},
+  {id:47,cat:'beauty',name:'นัดหมายสปาก่อนวันแต่งงาน',priority:'low',deadline:'2027-01-25',done:false,notes:''},
+  {id:48,cat:'misc',name:'เลือกพิธีกรดำเนินงาน (MC)',priority:'med',deadline:'2026-07-31',done:false,notes:''},
+  {id:49,cat:'misc',name:'จัดทำ timeline วันแต่งงาน',priority:'high',deadline:'2027-01-20',done:false,notes:'ตั้งแต่แต่งตัวจนเสร็จงาน'},
+  {id:50,cat:'misc',name:'วางแผนการเดินทาง/รถรับส่งแขก',priority:'med',deadline:'2026-12-31',done:false,notes:''},
+];
+
+/* ═══════════════════════════════
+   STATE
+═══════════════════════════════ */
+let tasks = [], guests = [], nid = 51, ngid = 1;
+let tcf = 'all', gcf = 'all';
+let editTaskId = null, editGuestId = null;
+const exp = {}; CATS.forEach(c => exp[c.id] = true);
+
+/* ═══════════════════════════════
+   STORAGE (localStorage)
+═══════════════════════════════ */
+function save() {
+  try {
+    localStorage.setItem('wp_tasks', JSON.stringify({tasks, nid}));
+    localStorage.setItem('wp_guests', JSON.stringify({guests, ngid}));
+  } catch(e) {}
+}
+function load() {
+  try {
+    const td = JSON.parse(localStorage.getItem('wp_tasks'));
+    if (td) { tasks = td.tasks; nid = td.nid || 51; } else { tasks = JSON.parse(JSON.stringify(DEFAULT_TASKS)); }
+    const gd = JSON.parse(localStorage.getItem('wp_guests'));
+    if (gd) { guests = gd.guests || []; ngid = gd.ngid || 1; }
+  } catch(e) {
+    tasks = JSON.parse(JSON.stringify(DEFAULT_TASKS));
+    guests = [];
+  }
+}
+
+/* ═══════════════════════════════
+   UTIL
+═══════════════════════════════ */
+function showToast(m) {
+  const t = document.getElementById('toast');
+  t.textContent = m; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('on'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+  document.getElementById('tab-' + id).classList.add('on');
+  btn.classList.add('on');
+  if (id === 'dash') renderDash();
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  editTaskId = null; editGuestId = null;
+}
+document.querySelectorAll('.modal-bg').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+function dlInfo(dl) {
+  if (!dl) return null;
+  const d = new Date(dl), diff = Math.ceil((d - new Date()) / 86400000);
+  const fmt = d.toLocaleDateString('th-TH', {day:'numeric', month:'short', year:'2-digit'});
+  return { text: diff < 0 ? 'เลยกำหนด!' : diff <= 30 ? `${diff} วัน` : fmt, late: diff < 0 };
+}
+
+/* ═══════════════════════════════
+   COUNTDOWN
+═══════════════════════════════ */
+function tick() {
+  const diff = WEDDING - new Date(), el = document.getElementById('cd');
+  if (diff <= 0) { el.innerHTML = '<span style="color:var(--rose-deep);font-family:Cormorant Garamond,serif;font-size:16px;font-style:italic">ถึงวันแต่งงานแล้ว ✦</span>'; return; }
+  const d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000);
+  el.innerHTML = [['วัน',d],['ชั่วโมง',h],['นาที',m]].map(([l,n]) =>
+    `<div class="count-box"><div class="count-num">${n}</div><div class="count-lbl">${l}</div></div>`).join('');
+}
+
+/* ═══════════════════════════════
+   DASHBOARD
+═══════════════════════════════ */
+function renderDash() {
+  const tot = tasks.length, dn = tasks.filter(t => t.done).length;
+  const pct = tot ? Math.round(dn / tot * 100) : 0;
+  const circ = 2 * Math.PI * 36;
+  document.getElementById('ring-fg').setAttribute('stroke-dasharray', `${circ * pct / 100} ${circ}`);
+  document.getElementById('ring-pct').textContent = pct + '%';
+
+  const overdue = tasks.filter(t => !t.done && t.deadline && new Date(t.deadline) < new Date()).length;
+  document.getElementById('oc-stats').innerHTML = `
+    <div class="stat-pill"><div class="stat-num">${tot}</div><div class="stat-lbl">ทั้งหมด</div></div>
+    <div class="stat-pill"><div class="stat-num">${dn}</div><div class="stat-lbl">เสร็จแล้ว</div></div>
+    <div class="stat-pill"><div class="stat-num">${tot-dn}</div><div class="stat-lbl">คงเหลือ</div></div>
+    <div class="stat-pill" style="background:#fdeae8;border-color:#e8b0a8;"><div class="stat-num" style="color:#8a3030;">${overdue}</div><div class="stat-lbl">เลยกำหนด</div></div>`;
+
+  const hi=tasks.filter(t=>!t.done&&t.priority==='high').length;
+  const me=tasks.filter(t=>!t.done&&t.priority==='med').length;
+  const lo=tasks.filter(t=>!t.done&&t.priority==='low').length;
+  document.getElementById('urg-row').innerHTML = `
+    <div class="urg-card high"><div class="urg-num">${hi}</div><div class="urg-lbl">ด่วนมาก</div></div>
+    <div class="urg-card med"><div class="urg-num">${me}</div><div class="urg-lbl">ปานกลาง</div></div>
+    <div class="urg-card low"><div class="urg-num">${lo}</div><div class="urg-lbl">ไม่ด่วน</div></div>`;
+
+  let bhtml = '';
+  CATS.forEach(cat => {
+    const ct = tasks.filter(t => t.cat === cat.id);
+    const cdn = ct.filter(t => t.done).length;
+    const p = ct.length ? Math.round(cdn / ct.length * 100) : 0;
+    bhtml += `<div class="cb-item">
+      <div class="cb-top"><span class="cb-ico">${cat.icon}</span><span class="cb-name">${cat.label}</span><span class="cb-pct">${p}%</span></div>
+      <div class="cb-track"><div class="cb-fill" style="width:${p}%"></div></div>
+      <div class="cb-count">${cdn} / ${ct.length} งาน</div></div>`;
+  });
+  document.getElementById('cat-bars').innerHTML = bhtml;
+
+  const now = new Date();
+  const upcoming = tasks.filter(t => !t.done && t.deadline)
+    .map(t => ({...t, diff: Math.ceil((new Date(t.deadline) - now) / 86400000)}))
+    .filter(t => t.diff >= 0 && t.diff <= 60)
+    .sort((a,b) => a.diff - b.diff).slice(0, 8);
+  const ico = id => CATS.find(c => c.id === id)?.icon || '📌';
+  document.getElementById('up-list').innerHTML = upcoming.length
+    ? upcoming.map(t => {
+        const s = t.diff <= 14;
+        const dlTxt = t.diff === 0 ? 'วันนี้!' : t.diff <= 30 ? `${t.diff} วัน` : new Date(t.deadline).toLocaleDateString('th-TH',{day:'numeric',month:'short'});
+        return `<div class="up-item"><span class="up-ico">${ico(t.cat)}</span><span class="up-name">${t.name}</span><span class="up-dl ${s?'soon':'ok'}">${dlTxt}</span></div>`;
+      }).join('')
+    : '<div class="empty-msg">ไม่มีงานใกล้ครบกำหนด</div>';
+
+  // guest summary on dashboard
+  const gc = guests.filter(g => g.status === 'confirmed').reduce((s, g) => s + (g.count||1), 0);
+  const gp = guests.filter(g => g.status === 'pending').length;
+  const gd = guests.filter(g => g.status === 'declined').length;
+  const gtot = guests.reduce((s, g) => s + (g.count||1), 0);
+  document.getElementById('dash-guest-stats').innerHTML = `
+    <div class="g-stat"><div class="g-stat-num">${guests.length}</div><div class="g-stat-lbl">รายชื่อทั้งหมด</div></div>
+    <div class="g-stat"><div class="g-stat-num">${gtot}</div><div class="g-stat-lbl">จำนวนคน</div></div>
+    <div class="g-stat" style="background:rgba(200,216,200,0.3);"><div class="g-stat-num" style="color:#3a6040;">${gc}</div><div class="g-stat-lbl">ยืนยันแล้ว</div></div>
+    <div class="g-stat" style="background:rgba(212,184,150,0.2);"><div class="g-stat-num" style="color:#7a5820;">${gp}</div><div class="g-stat-lbl">รอยืนยัน</div></div>`;
+}
+
+/* ═══════════════════════════════
+   TASKS
+═══════════════════════════════ */
+function setTF(f, btn) {
+  tcf = f;
+  document.querySelectorAll('.filter-row .fpill').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on'); renderTasks();
+}
+function renderTasks() {
+  const q = document.getElementById('sq').value.toLowerCase();
+  const tot = tasks.length, dn = tasks.filter(t => t.done).length;
+  document.getElementById('pc').textContent = `${dn} / ${tot} งาน`;
+  document.getElementById('pf').style.width = tot ? (dn/tot*100).toFixed(1) + '%' : '0%';
+  let html = '';
+  CATS.forEach(cat => {
+    const ct = tasks.filter(t => {
+      if (t.cat !== cat.id) return false;
+      if (q && !t.name.toLowerCase().includes(q)) return false;
+      if (tcf === 'pending' && t.done) return false;
+      if (tcf === 'done' && !t.done) return false;
+      if (tcf === 'high' && t.priority !== 'high') return false;
+      return true;
+    });
+    if (!ct.length && q) return;
+    const cdn = ct.filter(t => t.done).length;
+    html += `<div class="cat-block"><div class="cat-head" onclick="toggleCat('${cat.id}')">
+      <span class="cat-ico">${cat.icon}</span><span class="cat-name-t">${cat.label}</span>
+      <span class="cat-stat">${cdn}/${ct.length}</span><span class="cat-arr">${exp[cat.id]?'▾':'▸'}</span>
+    </div>`;
+    if (exp[cat.id]) {
+      html += '<div class="task-list">';
+      if (!ct.length) html += '<div class="empty-msg">ไม่มีรายการ</div>';
+      ct.forEach(t => {
+        const dl = dlInfo(t.deadline);
+        const pTxt = t.priority==='high'?'ด่วนมาก':t.priority==='med'?'ปานกลาง':'ไม่ด่วน';
+        const pCls = t.priority==='high'?'b-high':t.priority==='med'?'b-med':'b-low';
+        html += `<div class="tcard ${t.done?'done':''}">
+          <div class="check-ring ${t.done?'on':''}" onclick="togTask(${t.id})">
+            <svg class="check-svg" width="9" height="9" viewBox="0 0 10 10" fill="none">
+              <polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="tinfo">
+            <div class="tname">${t.name}</div>
+            ${t.notes ? `<div class="tnote">${t.notes}</div>` : ''}
+            <div class="tmeta">
+              <span class="badge ${pCls}">${pTxt}</span>
+              ${dl ? `<span class="dl-chip ${dl.late?'late':''}">${dl.text}</span>` : ''}
+            </div>
+          </div>
+          <div class="tbtns">
+            <button class="tbtn" onclick="openTaskEdit(${t.id})">✏</button>
+            <button class="tbtn x" onclick="delTask(${t.id})">✕</button>
+          </div>
+        </div>`;
+      });
+      html += `<div id="af-${cat.id}"><button class="add-trigger" onclick="showAF('${cat.id}')">✦ เพิ่มรายการ</button></div>`;
+      html += '</div>';
+    }
+    html += '</div>';
+  });
+  document.getElementById('cats').innerHTML = html;
+}
+function toggleCat(id) { exp[id] = !exp[id]; renderTasks(); }
+function togTask(id) { const t = tasks.find(t => t.id===id); if(t) t.done = !t.done; save(); renderTasks(); renderDash(); }
+function delTask(id) { if (!confirm('ลบรายการนี้?')) return; tasks = tasks.filter(t => t.id!==id); save(); renderTasks(); renderDash(); showToast('ลบแล้ว'); }
+function showAF(cid) {
+  document.getElementById('af-'+cid).innerHTML = `<div class="add-form">
+    <div class="af-row">
+      <input class="af-in" id="an-${cid}" placeholder="ชื่องาน..." style="flex:2">
+      <input class="af-in" id="ad-${cid}" type="date" style="flex:1">
+      <select class="af-sel" id="ap-${cid}"><option value="high">ด่วนมาก</option><option value="med" selected>ปานกลาง</option><option value="low">ไม่ด่วน</option></select>
+    </div>
+    <div class="af-btns">
+      <button class="btn-primary" onclick="addTask('${cid}')">เพิ่ม ✦</button>
+      <button class="btn-sec" onclick="renderTasks()">ยกเลิก</button>
+    </div>
+  </div>`;
+}
+function addTask(cid) {
+  const n = document.getElementById('an-'+cid).value.trim(); if (!n) return;
+  tasks.push({id:nid++, cat:cid, name:n, priority:document.getElementById('ap-'+cid).value, deadline:document.getElementById('ad-'+cid).value, done:false, notes:''});
+  save(); renderTasks(); renderDash(); showToast('เพิ่มแล้ว ✦');
+}
+function openTaskEdit(id) {
+  editTaskId = id; const t = tasks.find(t => t.id===id);
+  // populate cat select
+  document.getElementById('m-cat').innerHTML = CATS.map(c => `<option value="${c.id}" ${t.cat===c.id?'selected':''}>${c.icon} ${c.label}</option>`).join('');
+  document.getElementById('m-name').value = t.name;
+  document.getElementById('m-dl').value = t.deadline || '';
+  document.getElementById('m-pr').value = t.priority;
+  document.getElementById('m-notes').value = t.notes || '';
+  document.getElementById('task-modal').classList.add('open');
+}
+function saveTaskEdit() {
+  const t = tasks.find(t => t.id===editTaskId); if(!t) return;
+  t.name = document.getElementById('m-name').value || t.name;
+  t.deadline = document.getElementById('m-dl').value;
+  t.priority = document.getElementById('m-pr').value;
+  t.cat = document.getElementById('m-cat').value;
+  t.notes = document.getElementById('m-notes').value;
+  closeModal('task-modal'); save(); renderTasks(); renderDash(); showToast('บันทึกแล้ว ✦');
+}
+
+/* ═══════════════════════════════
+   GUESTS
+═══════════════════════════════ */
+function setGF(f, btn) {
+  gcf = f;
+  document.querySelectorAll('.g-filter-row .fpill').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on'); renderGuests();
+}
+function addGuest() {
+  const name = document.getElementById('gname').value.trim();
+  if (!name) { showToast('กรุณาใส่ชื่อแขก'); return; }
+  guests.push({
+    id: ngid++,
+    name,
+    relation: document.getElementById('grelation').value.trim(),
+    side: document.getElementById('gside').value,
+    status: document.getElementById('gstatus').value,
+    phone: document.getElementById('gphone').value.trim(),
+    count: parseInt(document.getElementById('gcount').value) || 1,
+    table: document.getElementById('gtable').value.trim(),
+    notes: document.getElementById('gnotes').value.trim(),
+  });
+  save(); clearGuestForm(); renderGuests(); renderDash(); showToast('เพิ่มแขกแล้ว ✦');
+}
+function clearGuestForm() {
+  ['gname','grelation','gphone','gtable','gnotes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('gstatus').value = 'pending';
+  document.getElementById('gside').value = 'bride';
+  document.getElementById('gcount').value = '1';
+}
+function delGuest(id) {
+  if (!confirm('ลบรายชื่อนี้?')) return;
+  guests = guests.filter(g => g.id !== id); save(); renderGuests(); renderDash(); showToast('ลบแล้ว');
+}
+function openGuestEdit(id) {
+  editGuestId = id; const g = guests.find(g => g.id===id);
+  document.getElementById('gm-name').value = g.name;
+  document.getElementById('gm-relation').value = g.relation || '';
+  document.getElementById('gm-phone').value = g.phone || '';
+  document.getElementById('gm-side').value = g.side || 'bride';
+  document.getElementById('gm-status').value = g.status || 'pending';
+  document.getElementById('gm-count').value = g.count || 1;
+  document.getElementById('gm-table').value = g.table || '';
+  document.getElementById('gm-notes').value = g.notes || '';
+  document.getElementById('guest-modal').classList.add('open');
+}
+function saveGuestEdit() {
+  const g = guests.find(g => g.id===editGuestId); if(!g) return;
+  g.name = document.getElementById('gm-name').value || g.name;
+  g.relation = document.getElementById('gm-relation').value;
+  g.phone = document.getElementById('gm-phone').value;
+  g.side = document.getElementById('gm-side').value;
+  g.status = document.getElementById('gm-status').value;
+  g.count = parseInt(document.getElementById('gm-count').value) || 1;
+  g.table = document.getElementById('gm-table').value;
+  g.notes = document.getElementById('gm-notes').value;
+  closeModal('guest-modal'); save(); renderGuests(); renderDash(); showToast('บันทึกแล้ว ✦');
+}
+function renderGuests() {
+  const q = document.getElementById('gsq').value.toLowerCase();
+  const statusTxt = {confirmed:'ยืนยันแล้ว', pending:'รอยืนยัน', declined:'ไม่มาร่วมงาน'};
+  const statusCls = {confirmed:'gs-confirmed', pending:'gs-pending', declined:'gs-declined'};
+  const sideTxt = {bride:'ฝ่ายเจ้าสาว', groom:'ฝ่ายเจ้าบ่าว', both:'ทั้งสองฝ่าย'};
+  const sideCls = {bride:'gs-bride', groom:'gs-groom', both:'gs-both'};
+
+  // stats
+  const tot = guests.length;
+  const totPpl = guests.reduce((s,g)=>s+(g.count||1),0);
+  const conf = guests.filter(g=>g.status==='confirmed').reduce((s,g)=>s+(g.count||1),0);
+  const pend = guests.filter(g=>g.status==='pending').length;
+  const decl = guests.filter(g=>g.status==='declined').length;
+  document.getElementById('g-stats').innerHTML = `
+    <div class="g-stat"><div class="g-stat-num">${tot}</div><div class="g-stat-lbl">รายชื่อทั้งหมด</div></div>
+    <div class="g-stat"><div class="g-stat-num">${totPpl}</div><div class="g-stat-lbl">จำนวนคน (รวม)</div></div>
+    <div class="g-stat" style="background:rgba(200,216,200,0.3);"><div class="g-stat-num" style="color:#3a6040;">${conf}</div><div class="g-stat-lbl">ยืนยันแล้ว</div></div>
+    <div class="g-stat" style="background:rgba(212,184,150,0.2);"><div class="g-stat-num" style="color:#7a5820;">${pend}</div><div class="g-stat-lbl">รอยืนยัน</div></div>`;
+
+  let filtered = guests.filter(g => {
+    if (q && !g.name.toLowerCase().includes(q) && !(g.relation||'').toLowerCase().includes(q) && !(g.table||'').toLowerCase().includes(q)) return false;
+    if (gcf === 'confirmed' && g.status !== 'confirmed') return false;
+    if (gcf === 'pending' && g.status !== 'pending') return false;
+    if (gcf === 'declined' && g.status !== 'declined') return false;
+    if (gcf === 'bride' && g.side !== 'bride') return false;
+    if (gcf === 'groom' && g.side !== 'groom') return false;
+    return true;
+  });
+
+  const tbody = document.getElementById('guest-tbody');
+  const empty = document.getElementById('guest-empty');
+  if (!filtered.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  tbody.innerHTML = filtered.map((g, i) => `
+    <tr>
+      <td style="color:var(--text-soft);font-size:11px;">${i+1}</td>
+      <td><div style="font-weight:500;">${g.name}</div>${g.notes?`<div style="font-size:11px;color:var(--text-soft);font-style:italic;">${g.notes}</div>`:''}</td>
+      <td style="color:var(--text-mid);font-size:12px;">${g.relation||'—'}</td>
+      <td><span class="g-side ${sideCls[g.side]||'gs-both'}">${sideTxt[g.side]||g.side}</span></td>
+      <td><span class="g-status ${statusCls[g.status]||''}">${statusTxt[g.status]||g.status}</span></td>
+      <td style="text-align:center;">${g.count||1}</td>
+      <td style="font-size:12px;color:var(--text-mid);">${g.table||'—'}</td>
+      <td style="font-size:12px;color:var(--text-soft);">${g.phone||'—'}</td>
+      <td>
+        <div style="display:flex;gap:3px;">
+          <button class="tbtn" onclick="openGuestEdit(${g.id})">✏</button>
+          <button class="tbtn x" onclick="delGuest(${g.id})">✕</button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+function exportGuestCSV() {
+  const header = ['ลำดับ','ชื่อ-นามสกุล','ความสัมพันธ์','ฝ่าย','RSVP','จำนวนคน','โต๊ะ','โทรศัพท์','หมายเหตุ'];
+  const sideTxt = {bride:'ฝ่ายเจ้าสาว', groom:'ฝ่ายเจ้าบ่าว', both:'ทั้งสองฝ่าย'};
+  const statusTxt = {confirmed:'ยืนยันแล้ว', pending:'รอยืนยัน', declined:'ไม่มาร่วมงาน'};
+  const rows = guests.map((g, i) => [
+    i+1, g.name, g.relation||'', sideTxt[g.side]||g.side, statusTxt[g.status]||g.status,
+    g.count||1, g.table||'', g.phone||'', g.notes||''
+  ].map(v => `"${String(v).replace(/"/g,'""')}"`).join(','));
+  const csv = '\uFEFF' + [header.join(','), ...rows].join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'guest-list.csv';
+  a.click();
+  showToast('Export CSV แล้ว ✦');
+}
+
+/* ═══════════════════════════════
+   INIT
+═══════════════════════════════ */
+load();
+tick(); setInterval(tick, 30000);
+renderDash(); renderTasks(); renderGuests();
+</script>
+</body>
+</html>
