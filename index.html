@@ -633,7 +633,7 @@ function setGF(f,btn){gcf=f;document.querySelectorAll('.g-filter-row .fpill').fo
 async function addGuest(){
   const name=document.getElementById('gname').value.trim();
   if(!name){showToast('กรุณาใส่ชื่อแขก');return;}
-  const row={name,guest_type:document.getElementById('gtype').value,relation:document.getElementById('grelation').value.trim(),side:document.getElementById('gside').value,status:document.getElementById('gstatus').value,phone:document.getElementById('gphone').value.trim(),count:parseInt(document.getElementById('gcount').value)||1,table:document.getElementById('gtable').value.trim(),notes:document.getElementById('gnotes').value.trim()};
+  const row={name,guest_type:document.getElementById('gtype').value,relation:document.getElementById('grelation').value.trim(),side:document.getElementById('gside').value,status:document.getElementById('gstatus').value,phone:document.getElementById('gphone').value.trim(),count:parseInt(document.getElementById('gcount').value)||1,seat_table:document.getElementById('gtable').value.trim(),notes:document.getElementById('gnotes').value.trim()};
   const{data,error}=await sb.from('guests').insert(row).select().single();
   if(error){showToast('เพิ่มไม่สำเร็จ: '+error.message);return;}
   guests.push(data);clearGuestForm();renderGuests();renderDash();showToast('เพิ่มแขกแล้ว ✦');
@@ -653,13 +653,14 @@ function openGuestEdit(id){
   document.getElementById('gm-name').value=g.name;document.getElementById('gm-relation').value=g.relation||'';
   document.getElementById('gm-phone').value=g.phone||'';document.getElementById('gm-side').value=g.side||'bride';
   document.getElementById('gm-status').value=g.status||'pending';document.getElementById('gm-count').value=g.count||1;
-  document.getElementById('gm-table').value=g.table||'';document.getElementById('gm-notes').value=g.notes||'';
+  document.getElementById('gm-table').value=g.seat_table||'';
+  document.getElementById('gm-notes').value=g.notes||'';
   document.getElementById('gm-type').value=g.guest_type||'general';
   document.getElementById('guest-modal').classList.add('open');
 }
 async function saveGuestEdit(){
   const g=guests.find(g=>g.id===editGuestId);if(!g)return;
-  const upd={name:document.getElementById('gm-name').value||g.name,guest_type:document.getElementById('gm-type').value,relation:document.getElementById('gm-relation').value,phone:document.getElementById('gm-phone').value,side:document.getElementById('gm-side').value,status:document.getElementById('gm-status').value,count:parseInt(document.getElementById('gm-count').value)||1,table:document.getElementById('gm-table').value,notes:document.getElementById('gm-notes').value,updated_at:new Date().toISOString()};
+  const upd={name:document.getElementById('gm-name').value||g.name,guest_type:document.getElementById('gm-type').value,relation:document.getElementById('gm-relation').value,phone:document.getElementById('gm-phone').value,side:document.getElementById('gm-side').value,status:document.getElementById('gm-status').value,count:parseInt(document.getElementById('gm-count').value)||1,seat_table:document.getElementById('gm-table').value,notes:document.getElementById('gm-notes').value,updated_at:new Date().toISOString()};
   Object.assign(g,upd);closeModal('guest-modal');renderGuests();renderDash();
   const{error}=await sb.from('guests').update(upd).eq('id',editGuestId);
   if(error){showToast('บันทึกไม่สำเร็จ');await loadAll();}else showToast('บันทึกแล้ว ✦');
@@ -706,7 +707,7 @@ function renderGuests(){
 
   // filter
   const filtered=guests.filter(g=>{
-    if(q&&!g.name.toLowerCase().includes(q)&&!(g.relation||'').toLowerCase().includes(q)&&!(g.table||'').toLowerCase().includes(q))return false;
+    if(q&&!g.name.toLowerCase().includes(q)&&!(g.relation||'').toLowerCase().includes(q)&&!(g.seat_table||'').toLowerCase().includes(q))return false;
     const gt=g.guest_type||'general';
     if(gcf==='confirmed'&&g.status!=='confirmed')return false;
     if(gcf==='pending'&&g.status!=='pending')return false;
@@ -734,7 +735,7 @@ function renderGuests(){
     <td><span class="g-side ${sdCls[g.side]||'gs-both'}">${sdTxt[g.side]||g.side}</span></td>
     <td><span class="g-status ${stCls[g.status]||''}">${stTxt[g.status]||g.status}</span></td>
     <td style="text-align:center;">${g.count||1}</td>
-    <td style="font-size:12px;color:var(--text-mid);">${g.table||'—'}</td>
+    <td style="font-size:12px;color:var(--text-mid);">${g.seat_table||'—'}</td>
     <td style="font-size:12px;color:var(--text-soft);">${g.phone||'—'}</td>
     <td><div style="display:flex;gap:3px;"><button class="tbtn" onclick="openGuestEdit(${g.id})">✏</button><button class="tbtn x" onclick="delGuest(${g.id})">✕</button></div></td>
   </tr>`;}).join('');
@@ -749,7 +750,7 @@ function exportGuestCSV(){
   const gt={vip:'VIP',general:'แขกทั่วไป',bridesmaids:'เพื่อนเจ้าสาว',groomsmen:'เพื่อนเจ้าบ่าว',elder:'ญาติผู้ใหญ่'};
   const st={bride:'ฝ่ายเจ้าสาว',groom:'ฝ่ายเจ้าบ่าว',both:'ทั้งสองฝ่าย'};
   const ss={confirmed:'ยืนยันแล้ว',pending:'รอยืนยัน',declined:'ไม่มาร่วมงาน'};
-  const rows=guests.map((g,i)=>[i+1,g.name,gt[g.guest_type||'general']||g.guest_type,g.relation||'',st[g.side]||g.side,ss[g.status]||g.status,g.count||1,g.table||'',g.phone||'',g.notes||''].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','));
+  const rows=guests.map((g,i)=>[i+1,g.name,gt[g.guest_type||'general']||g.guest_type,g.relation||'',st[g.side]||g.side,ss[g.status]||g.status,g.count||1,g.seat_table||'',g.phone||'',g.notes||''].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','));
   const csv='\uFEFF'+[h.join(','),...rows].join('\n');
   const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='guest-list.csv';a.click();
   showToast('Export CSV แล้ว ✦');
